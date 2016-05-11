@@ -1,6 +1,10 @@
 JekyllCN
 ========
-
+{% for post in site.posts %}
+<h2>
+	{{post.title}}
+</h2>
+{% endfor %}
 [![Build Status](https://travis-ci.org/xcatliu/jekyllcn.svg?branch=master)](https://travis-ci.org/xcatliu/jekyllcn)
 
 网址：[http://jekyllcn.com/](http://jekyllcn.com/)
