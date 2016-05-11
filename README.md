@@ -1,10 +1,56 @@
 JekyllCN
 ========
-{% for post in site.posts %}
-<h2>
-	{{post.title}}
-</h2>
-{% endfor %}
+
+ 	<script src="../Scripts/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript">
+    function GetHtml() {
+      $.ajax({
+        type: "POST",
+        url: 'Handler.ashx',      //提交到一般处理程序请求数据     
+        success: LoadHtml
+      });
+    }
+    function LoadHtml(data) {
+        var div = document.getElementById("out");
+        div.innerHTML = data;//注意这里，要是想展示test.heml中的内容就用这个，如果显示源代码则用innerText
+    }
+	</script>
+<body>
+    <p>test</p>
+    <input type="button" value="加载外部Html文件内容" onclick="GetHtml()" />
+    <div id="out">
+    </div>
+
+</body>
+</html>
+public void ProcessRequest(HttpContext context)
+{
+    context.Response.ContentType = "text/plain";
+    string html = GetOutsideContent("test.html");
+    context.Response.Write(html);
+}
+public static string GetOutsideContent(string Path)
+{
+    try
+    {
+        StreamReader sr = new StreamReader(HttpContext.Current.Server.MapPath(Path), System.Text.Encoding.GetEncoding("utf-8"));
+        string content = sr.ReadToEnd().ToString();
+        sr.Close();
+        return content;
+     }
+     catch
+     {
+         return "错误";
+     }
+}
+public bool IsReusable
+{
+    get
+    {
+        return false;
+    }
+}
+
 [![Build Status](https://travis-ci.org/xcatliu/jekyllcn.svg?branch=master)](https://travis-ci.org/xcatliu/jekyllcn)
 
 网址：[http://jekyllcn.com/](http://jekyllcn.com/)
