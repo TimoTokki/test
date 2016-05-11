@@ -1,28 +1,6 @@
 JekyllCN
 ========
 
-<script src="http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js">
-<script type="text/javascript">
-  function GetHtml() {
-    $.ajax({
-      type: "POST",
-      url: 'Handler.ashx',      //提交到一般处理程序请求数据     
-      success: LoadHtml
-    });
-  }
-  function LoadHtml(data) {
-      var div = document.getElementById("out");
-      div.innerHTML = data;//注意这里，要是想展示test.heml中的内容就用这个，如果显示源代码则用innerText
-  }
-</script>
-
-<p>test</p>
-<input type="button" value="加载外部Html文件内容" onclick="GetHtml()" />
-<div id="out">
-</div>
-
-
-
 [![Build Status](https://travis-ci.org/xcatliu/jekyllcn.svg?branch=master)](https://travis-ci.org/xcatliu/jekyllcn)
 
 网址：[http://jekyllcn.com/](http://jekyllcn.com/)
