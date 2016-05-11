@@ -1,7 +1,7 @@
 public void ProcessRequest(HttpContext context)
 {
     context.Response.ContentType = "text/plain";
-    string html = GetOutsideContent("test.html");
+    string html = GetOutsideContent("index.html");
     context.Response.Write(html);
 }
 public static string GetOutsideContent(string Path)
